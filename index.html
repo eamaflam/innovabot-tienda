@@ -294,63 +294,37 @@
         <p>Proveedor Tecnológico: Soluciones Alegra S.A.S</p>
     </footer>
 
-    <div class="cart-float" onclick="toggleCart()">
-        🛒
-        <div class="cart-count" id="cartCount">0</div>
-    </div>
-
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>🛍️ Tu Canasta</h3>
-                <button class="close-cart" onclick="toggleCart()">×</button>
-            </div>
-            
-            <div class="cart-items" id="cartItemsContainer">
-                <p style="text-align: center; margin-top: 20px; color: #999;">Tu canasta está vacía</p>
-            </div>
-            
-            <div class="cart-footer">
-                <div class="total-row">
-                    <span>Total:</span>
-                    <span id="cartTotal">$0</span>
-                </div>
-                <button onclick="checkoutWhatsApp()" class="btn btn-whatsapp">
-                    📱 Enviar Pedido por WhatsApp
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // --- DATOS DE PRODUCTOS ---
+        /* PASO 1: Crea una carpeta llamada 'img' junto a este archivo.
+           PASO 2: Guarda tus fotos ahí con estos nombres exactos. */
+
         const products = [
-            { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", price: 1370129, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Microbit+Pack" },
-            { id: 2, name: "Carro Robótico Arduino Kit", price: 166960, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Carro+Robot" },
-            { id: 3, name: "Kit Micro:bit Construcción STEM", price: 199900, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Kit+STEM" },
-            { id: 4, name: "Tarjeta Expansión Micro:bit Io Bit", price: 42382, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Expansion" },
-            { id: 5, name: "Sensor Humedad Suelo Capacitivo", price: 10000, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Sensor" },
-            { id: 6, name: "Módulo Relé 1 Canal 5V/10A", price: 10000, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Rele" },
-            { id: 7, name: "Set Destornilladores Precisión", price: 13856, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Herramientas" },
-            { id: 8, name: "Multitoma Regleta 6 Puertos", price: 10240, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Regleta" },
-            { id: 9, name: "Extensión Eléctrica 5 Metros", price: 10147, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Extension" },
-            { id: 10, name: "Kit Soldador Regulable", price: 29266, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Soldador" },
-            { id: 11, name: "Pilas Recargables AAA x4", price: 33606, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Pilas" },
-            { id: 12, name: "Cargador Inteligente 8 Ranuras", price: 68920, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Cargador" },
-            { id: 13, name: "Cables Jumper Dupont x10", price: 5290, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Cables" }
+            { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", price: 1370129, image: "img/microbit-pack.jpg" },
+            { id: 2, name: "Carro Robótico Arduino Kit", price: 166960, image: "img/carro-arduino.jpg" },
+            { id: 3, name: "Kit Micro:bit Construcción STEM", price: 199900, image: "img/kit-stem.jpg" },
+            { id: 4, name: "Tarjeta Expansión Micro:bit Io Bit", price: 42382, image: "img/expansion-iobit.jpg" },
+            { id: 5, name: "Sensor Humedad Suelo Capacitivo", price: 10000, image: "img/sensor-humedad.jpg" },
+            { id: 6, name: "Módulo Relé 1 Canal 5V/10A", price: 10000, image: "img/rele-1canal.jpg" },
+            { id: 7, name: "Set Destornilladores Precisión", price: 13856, image: "img/destornilladores.jpg" },
+            { id: 8, name: "Multitoma Regleta 6 Puertos", price: 10240, image: "img/multitoma.jpg" },
+            { id: 9, name: "Extensión Eléctrica 5 Metros", price: 10147, image: "img/extension.jpg" },
+            { id: 10, name: "Kit Soldador Regulable", price: 29266, image: "img/soldador.jpg" },
+            { id: 11, name: "Pilas Recargables AAA x4", price: 33606, image: "img/pilas-aaa.jpg" },
+            { id: 12, name: "Cargador Inteligente 8 Ranuras", price: 68920, image: "img/cargador.jpg" },
+            { id: 13, name: "Cables Jumper Dupont x10", price: 5290, image: "img/jumpers.jpg" }
         ];
 
-        // --- ESTADO DEL CARRITO ---
-        // Ahora guardamos objetos { id: 1, qty: 2 }
+        // --- LÓGICA DEL CARRITO ---
         let cart = [];
 
         function formatPrice(price) {
             return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(price);
         }
 
-        // --- RENDERIZADO Y FILTRO ---
+        // Renderizado con imagen por defecto si falla la carga
         function renderProducts(productList = products) {
             const container = document.getElementById('productsContainer');
+            
             if(productList.length === 0) {
                 container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: #888;">No encontramos productos con ese nombre 😕</p>';
                 return;
@@ -358,7 +332,7 @@
 
             container.innerHTML = productList.map(p => `
                 <div class="product-card">
-                    <img src="${p.image}" alt="${p.name}">
+                    <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Sin+Foto'">
                     <div>
                         <h3>${p.name}</h3>
                         <span class="price">${formatPrice(p.price)}</span>
@@ -368,25 +342,20 @@
             `).join('');
         }
 
-        // Función de búsqueda
         function filterProducts() {
             const term = document.getElementById('searchInput').value.toLowerCase();
             const filtered = products.filter(p => p.name.toLowerCase().includes(term));
             renderProducts(filtered);
         }
 
-        // --- LÓGICA DEL CARRITO (CON CANTIDADES) ---
-
+        // --- CARRITO ---
         function addToCart(id) {
-            // Verificar si ya existe en el carrito
             const existingItem = cart.find(item => item.id === id);
-
             if (existingItem) {
                 existingItem.qty++;
             } else {
                 cart.push({ id: id, qty: 1 });
             }
-
             updateCartUI();
             
             // Animación burbuja
@@ -395,36 +364,29 @@
             setTimeout(() => btnFloat.style.transform = 'scale(1)', 200);
         }
 
-        // Cambiar cantidad (+ o -)
         function changeQty(id, delta) {
             const item = cart.find(i => i.id === id);
             if (!item) return;
 
             item.qty += delta;
-
             if (item.qty <= 0) {
-                // Si baja a 0, eliminar del array
                 cart = cart.filter(i => i.id !== id);
             }
-
             updateCartUI();
         }
 
         function updateCartUI() {
-            // Calcular total de items (suma de cantidades)
             const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cartCount').textContent = totalItems;
             
             const container = document.getElementById('cartItemsContainer');
             const totalEl = document.getElementById('cartTotal');
-            
             let totalPrice = 0;
             
             if (cart.length === 0) {
                 container.innerHTML = '<p style="text-align: center; margin-top: 20px; color: #999;">Tu canasta está vacía</p>';
             } else {
                 container.innerHTML = cart.map(item => {
-                    // Buscar detalles completos del producto
                     const productInfo = products.find(p => p.id === item.id);
                     const subtotal = productInfo.price * item.qty;
                     totalPrice += subtotal;
@@ -435,7 +397,6 @@
                             <h4>${productInfo.name}</h4>
                             <span class="cart-item-total">${formatPrice(productInfo.price)} x ${item.qty} = ${formatPrice(subtotal)}</span>
                         </div>
-                        
                         <div class="qty-controls">
                             <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
                             <span class="qty-value">${item.qty}</span>
@@ -445,7 +406,6 @@
                     `;
                 }).join('');
             }
-            
             totalEl.textContent = formatPrice(totalPrice);
         }
 
@@ -467,7 +427,6 @@
                 const productInfo = products.find(p => p.id === item.id);
                 const subtotal = productInfo.price * item.qty;
                 total += subtotal;
-                
                 message += `▪️ (${item.qty}) x ${productInfo.name}\n`;
             });
 
@@ -477,7 +436,7 @@
             window.open(`https://wa.me/573022399995?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Cerrar modal si clic afuera
+        // Cerrar modal al hacer clic fuera
         window.onclick = function(event) {
             const modal = document.getElementById('cartModal');
             if (event.target == modal) {
@@ -485,7 +444,7 @@
             }
         }
 
-        // Inicializar
+        // Inicializar la tienda
         renderProducts();
     </script>
 </body>
