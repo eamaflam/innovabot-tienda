@@ -12,7 +12,8 @@ const products = [
     { id: 10, name: "Kit Soldador Regulable", price: 29266, image: "img/soldador.jpg" },
     { id: 11, name: "Pilas Recargables AAA x4", price: 33606, image: "img/pilas-aaa.jpg" },
     { id: 12, name: "Cargador Inteligente 8 Ranuras", price: 68920, image: "img/cargador.jpg" },
-    { id: 13, name: "Cables Jumper Dupont x10", price: 5290, image: "img/jumpers.jpg" }
+    { id: 13, name: "Cables Jumper Dupont x10", price: 5290, image: "img/jumpers.jpg" },
+    { id: 14, name: "Motor Reductor + Rueda Llanta 65mm", price: 12469, image: "img/motor-rueda.jpg" }
 ];
 
 // --- LÓGICA DEL CARRITO ---
