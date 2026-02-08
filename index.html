@@ -6,14 +6,13 @@
     <title>InnovaBot - Materiales de Electrónica y Robótica Educativa</title>
     <style>
         :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #2196F3;
-            --accent-color: #FF9800;
-            --dark-color: #333;
-            --light-color: #f4f4f4;
-            --success-color: #4CAF50;
-            --warning-color: #FF9800;
-            --info-color: #2196F3;
+            /* 1. ESCALA DE AZULES Y GRISES */
+            --primary-color: #154c79;   /* Azul oscuro institucional */
+            --secondary-color: #4a6fa5; /* Azul medio */
+            --accent-color: #8e9eab;    /* Gris azulado */
+            --dark-color: #2c3e50;      /* Gris muy oscuro para textos */
+            --light-color: #f4f6f7;     /* Gris muy claro para fondos */
+            --success-color: #2e86c1;   /* Azul brillante para acciones */
         }
         
         * {
@@ -25,16 +24,17 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            color: var(--dark-color);
+            background-color: #eaeded; /* Fondo gris suave */
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            /* Degradado azul a gris */
+            background: linear-gradient(135deg, var(--primary-color), #2c3e50);
             color: white;
             padding: 2rem 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
         }
         
         .container {
@@ -46,7 +46,8 @@
         .hero {
             text-align: center;
             padding: 4rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Degradado azul grisáceo */
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
             color: white;
             margin-bottom: 3rem;
         }
@@ -54,7 +55,11 @@
         .hero h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            /* 2. CENTRADO ASEGURADO */
+            text-align: center; 
+            display: block;
+            width: 100%;
         }
         
         .hero p {
@@ -69,23 +74,18 @@
         h2 {
             text-align: center;
             font-size: 2.2rem;
-            color: var(--dark-color);
+            color: var(--primary-color);
             margin-bottom: 2.5rem;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
         }
         
         h2::after {
             content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            display: block;
+            margin: 10px auto 0;
             width: 80px;
             height: 4px;
-            background: var(--primary-color);
+            background: var(--secondary-color);
             border-radius: 2px;
         }
         
@@ -99,16 +99,16 @@
         .product-card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             padding: 1.5rem;
             transition: all 0.3s ease;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #dcdcdc;
         }
         
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-color: var(--primary-color);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
         }
         
         .product-card img {
@@ -116,20 +116,21 @@
             height: 200px;
             object-fit: contain;
             margin-bottom: 1rem;
-            background-color: #f8f9fa;
+            background-color: white;
             padding: 10px;
             border-radius: 8px;
+            border: 1px solid #eee;
         }
         
         .product-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.8rem;
-            color: var(--dark-color);
+            color: var(--primary-color);
             min-height: 2.2rem;
         }
         
         .product-card p {
-            color: #666;
+            color: #555;
             font-size: 0.95rem;
             margin-bottom: 1rem;
             min-height: 4rem;
@@ -143,6 +144,7 @@
             font-family: 'Arial', sans-serif;
         }
         
+        /* 4. BOTÓN DE COMPRA DIRECTA */
         .btn {
             display: inline-block;
             background: var(--primary-color);
@@ -157,29 +159,25 @@
             font-weight: 600;
             width: 100%;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .btn:hover {
-            background: #45a049;
+            background: var(--secondary-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .btn-secondary {
-            background: var(--secondary-color);
+            background: #7f8c8d; /* Gris */
         }
         
         .btn-secondary:hover {
-            background: #1976d2;
+            background: #95a5a6;
         }
         
         .btn-whatsapp {
-            background: #25D366;
-        }
-        
-        .btn-whatsapp:hover {
-            background: #128C7E;
+            background: #128C7E; /* Mantener verde solo para WhatsApp por reconocimiento */
         }
         
         .payment-info {
@@ -187,12 +185,12 @@
             padding: 2.5rem;
             border-radius: 12px;
             margin: 2rem 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
         }
         
         .payment-info h3 {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
@@ -203,7 +201,7 @@
         }
         
         .payment-warning {
-            background: #e3f2fd;
+            background: #eaf2f8; /* Azul muy pálido */
             border-left: 4px solid var(--secondary-color);
             padding: 1.2rem;
             border-radius: 0 8px 8px 0;
@@ -215,7 +213,7 @@
             background: white;
             padding: 2.5rem;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         
         .contact-info p {
@@ -226,12 +224,12 @@
         .schedule {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 2px solid #e0e0e0;
+            border-top: 2px solid #eee;
         }
         
         .schedule h3 {
             margin-bottom: 1rem;
-            color: var(--dark-color);
+            color: var(--primary-color);
         }
         
         footer {
@@ -245,51 +243,16 @@
         
         footer p {
             margin-bottom: 0.5rem;
-            opacity: 0.9;
-        }
-        
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--success-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
-            display: none;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            opacity: 0.8;
         }
         
         @media (max-width: 768px) {
             .products-grid {
                 grid-template-columns: 1fr;
             }
-            
             .hero h2 {
                 font-size: 2rem;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
             .container {
                 padding: 0 15px;
             }
@@ -297,8 +260,6 @@
     </style>
 </head>
 <body>
-    <!-- Notificación flotante -->
-    <div id="notification" class="notification"></div>
 
     <header>
         <div class="container">
@@ -309,7 +270,7 @@
 
     <section class="hero">
         <div class="container">
-            <h2 style="text-align: center;">¡Inspira el Futuro con la Robótica!</h2>
+            <h2>¡Inspira el Futuro con la Robótica!</h2>
             <p>Materiales educativos para proyectos STEM y pensamiento computacional en Cundinamarca</p>
         </div>
     </section>
@@ -317,8 +278,7 @@
     <section class="container">
         <h2>Nuestros Productos</h2>
         <div class="products-grid" id="productsContainer">
-            <!-- Los productos se cargarán dinámicamente aquí -->
-        </div>
+            </div>
     </section>
 
     <section class="container">
@@ -332,24 +292,19 @@
             
             <h3 style="margin-top: 1.8rem;">📱 Nequi / Daviplata</h3>
             <p><strong>Teléfono:</strong> +57 302 239 9995</p>
-            <p><strong>Titular:</strong> SUAREZ BARON LUISA FERNANDA</p>
             
             <div class="payment-warning">
-                <p>⚠️ <strong>Importante:</strong> Al realizar el pago, por favor envía el comprobante al WhatsApp <a href="https://wa.me/573022399995" style="color: var(--secondary-color); text-decoration: underline; font-weight: bold;">+57 302 239 9995</a> para agilizar tu pedido.</p>
+                <p>⚠️ <strong>Importante:</strong> Al realizar el pago, envía el comprobante al WhatsApp <a href="https://wa.me/573022399995" style="color: var(--primary-color); text-decoration: underline; font-weight: bold;">+57 302 239 9995</a>.</p>
             </div>
-            
-            <a href="https://wa.me/573022399995" class="btn btn-whatsapp" style="margin-top: 1.5rem; display: inline-block;">
-                📱 Chatear por WhatsApp
-            </a>
         </div>
     </section>
 
     <section class="container">
         <h2>📞 Contáctanos</h2>
         <div class="contact-info">
-            <p><strong>👤 Nombre:</strong> SUAREZ BARON LUISA FERNANDA</p>
-            <p><strong>📱 Teléfono/WhatsApp:</strong> <a href="https://wa.me/573022399995" style="color: var(--secondary-color); text-decoration: underline;">+57 302 239 9995</a></p>
-            <p><strong>📧 Email:</strong> <a href="mailto:suarezbaronl@gmail.com" style="color: var(--secondary-color); text-decoration: underline;">suarezbaronl@gmail.com</a></p>
+            <p><strong>👤 innovabot-tienda:</strong></p>
+            <p><strong>📱 Teléfono/WhatsApp:</strong> <a href="https://wa.me/573022399995" style="color: var(--primary-color); text-decoration: underline;">+57 302 239 9995</a></p>
+            <p><strong>📧 Email:</strong> <a href="mailto:suarezbaronl@gmail.com" style="color: var(--primary-color); text-decoration: underline;">suarezbaronl@gmail.com</a></p>
             <p><strong>📍 Dirección:</strong> CR 3 A 17 SUR 99, Mosquera, Cundinamarca</p>
             
             <div class="schedule">
@@ -375,115 +330,23 @@
     </footer>
 
     <script>
-        // Base de datos de productos
+        // Base de datos de productos (Mismos productos)
         const products = [
-            {
-                id: 1,
-                name: "BBC Micro:bit V2 Club Pack (10 unidades)",
-                description: "10 placas Micro:bit V2, 10 cables micro USB, 10 soportes para baterías, 20 pilas AAA, 10 guías de inicio rápido. Ideal para programación educativa.",
-                price: 1370129,
-                image: "https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Microbit+V2+Pack",
-                category: "placas-programacion"
-            },
-            {
-                id: 2,
-                name: "Carro Robótico Arduino Kit Negro",
-                description: "Chasis TurboBot con 4 motorreductores, sensor QTR-8A, sensor ultrasónico HC-SR04, servomotor MG90, Arduino UNO R3, sensor shield, control remoto infrarrojo. Perfecto para proyectos STEM.",
-                price: 166960,
-                image: "https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Carro+Robotico",
-                category: "kits-robotica"
-            },
-            {
-                id: 3,
-                name: "Kit Micro:bit Construcción Educativa STEM",
-                description: "Coche robot programable basado en Micro:bit. Incluye piezas de construcción para proyectos educativos interactivos.",
-                price: 199900,
-                image: "https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Kit+Microbit+STEM",
-                category: "kits-robotica"
-            },
-            {
-                id: 4,
-                name: "Tarjeta de Expansión 3x para Micro:bit Io Bit V2.0",
-                description: "3 paneles expansibles para conectar múltiples sensores y actuadores a tu Micro:bit. Amplía las posibilidades de tus proyectos.",
-                price: 42382,
-                image: "https://via.placeholder.com/300x200/9C27B0/FFFFFF?text=Tarjeta+Expansion",
-                category: "accesorios"
-            },
-            {
-                id: 5,
-                name: "Sensor de Humedad de Suelo Capacitivo Arduino",
-                description: "Sensor V1.2 para medir humedad en suelo. Ideal para proyectos de agricultura automatizada y monitoreo ambiental.",
-                price: 10000,
-                image: "https://via.placeholder.com/300x200/3F51B5/FFFFFF?text=Sensor+Humedad",
-                category: "sensores"
-            },
-            {
-                id: 6,
-                name: "Módulo de Relé 1 Canal 5V/10A con LED",
-                description: "Módulo de relé con indicador LED para Arduino, Raspberry Pi y PIC. Controla dispositivos de alto voltaje de forma segura.",
-                price: 10000,
-                image: "https://via.placeholder.com/300x200/F44336/FFFFFF?text=Modulo+Rele",
-                category: "actuadores"
-            },
-            {
-                id: 7,
-                name: "Set de 5 Destornilladores de Precisión",
-                description: "Herramientas para reparaciones electrónicas, celulares y relojes. Incluye 5 puntas diferentes para trabajos de precisión.",
-                price: 13856,
-                image: "https://via.placeholder.com/300x200/607D8B/FFFFFF?text=Destornilladores",
-                category: "herramientas"
-            },
-            {
-                id: 8,
-                name: "Multitoma Regleta 6 Puertos con Interruptor",
-                description: "Regleta con 6 puertos, interruptor y cable encauchetado de 60cm. Capacidad para 125V con polo a tierra. Ideal para laboratorios de robótica.",
-                price: 10240,
-                image: "https://via.placeholder.com/300x200/009688/FFFFFF?text=Multitoma",
-                category: "accesorios"
-            },
-            {
-                id: 9,
-                name: "Extensión Eléctrica Blanca 5 Metros",
-                description: "Cable de extensión de 5 metros con 3 tomas. Perfecto para conectar múltiples dispositivos en tu taller de robótica.",
-                price: 10147,
-                image: "https://via.placeholder.com/300x200/795548/FFFFFF?text=Extension",
-                category: "accesorios"
-            },
-            {
-                id: 10,
-                name: "Kit de Soldador Eléctrico Temperatura Regulable",
-                description: "Soldador de 60W con temperatura ajustable, soporte, 5 puntas, estaño, pelacables, bomba de desoldar, pinzas y más. Todo lo necesario para soldaduras profesionales.",
-                price: 29266,
-                image: "https://via.placeholder.com/300x200/E91E63/FFFFFF?text=Kit+Soldador",
-                category: "herramientas"
-            },
-            {
-                id: 11,
-                name: "Pilas Energizer Recharge AAA x 4 unidades",
-                description: "Pilas recargables AAA de 700mAh. Generan menos residuos y ahorran dinero a largo plazo. Ideales para proyectos con Micro:bit y Arduino.",
-                price: 33606,
-                image: "https://via.placeholder.com/300x200/FF5722/FFFFFF?text=Pilas+AAA",
-                category: "baterias"
-            },
-            {
-                id: 12,
-                name: "Cargador de Batería Inteligente 8 Ranuras AA/AAA",
-                description: "Cargador LCD con 8 ranuras para pilas AA y AAA. Pantalla digital que muestra estado de carga. Entrada 5V/2A, salida 1.2V/2000mA.",
-                price: 68920,
-                image: "https://via.placeholder.com/300x200/03A9F4/FFFFFF?text=Cargador+Baterias",
-                category: "accesorios"
-            },
-            {
-                id: 13,
-                name: "Cables Jumper Dupont 20cm x 10 unidades",
-                description: "Cables de conexión tipo Dupont, 20cm de largo, colores surtidos. Disponibles en configuración Hembra-Hembra. Esenciales para prototipado rápido.",
-                price: 5290,
-                image: "https://via.placeholder.com/300x200/673AB7/FFFFFF?text=Cables+Jumper",
-                category: "componentes"
-            }
+            { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", description: "Pack educativo con 10 placas V2, accesorios y baterías. Ideal aulas.", price: 1370129, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Microbit+Pack" },
+            { id: 2, name: "Carro Robótico Arduino Kit Negro", description: "Chasis TurboBot, motores, sensores ultrasónicos y Arduino UNO.", price: 166960, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Carro+Robot" },
+            { id: 3, name: "Kit Micro:bit Construcción STEM", description: "Coche robot programable con piezas de construcción.", price: 199900, image: "https://via.placeholder.com/300x200/8e9eab/FFFFFF?text=Kit+STEM" },
+            { id: 4, name: "Tarjeta Expansión Micro:bit Io Bit", description: "Expande los puertos de tu Micro:bit para más sensores.", price: 42382, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Expansion" },
+            { id: 5, name: "Sensor Humedad Suelo Capacitivo", description: "Sensor V1.2 resistente a corrosión para Arduino.", price: 10000, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Sensor" },
+            { id: 6, name: "Módulo Relé 1 Canal 5V/10A", description: "Controla cargas de potencia con Arduino de forma segura.", price: 10000, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Rele" },
+            { id: 7, name: "Set Destornilladores Precisión", description: "5 herramientas esenciales para electrónica y reparaciones.", price: 13856, image: "https://via.placeholder.com/300x200/8e9eab/FFFFFF?text=Herramientas" },
+            { id: 8, name: "Multitoma Regleta 6 Puertos", description: "Con supresor de picos y polo a tierra. 15A 125V.", price: 10240, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Regleta" },
+            { id: 9, name: "Extensión Eléctrica 5 Metros", description: "Cable encauchetado resistente para taller.", price: 10147, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Extension" },
+            { id: 10, name: "Kit Soldador Temperatura Regulable", description: "60W ajustable con soporte y accesorios completos.", price: 29266, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Soldador" },
+            { id: 11, name: "Pilas Recargables AAA x4", description: "Energizer 700mAh. Ahorra dinero y cuida el planeta.", price: 33606, image: "https://via.placeholder.com/300x200/8e9eab/FFFFFF?text=Pilas" },
+            { id: 12, name: "Cargador Inteligente 8 Ranuras", description: "Para pilas AA y AAA con pantalla LCD indicadora.", price: 68920, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Cargador" },
+            { id: 13, name: "Cables Jumper Dupont x10", description: "20cm Hembra-Hembra para conexiones rápidas.", price: 5290, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Cables" }
         ];
 
-        // Función para formatear precios en formato COP
         function formatPrice(price) {
             return new Intl.NumberFormat('es-CO', { 
                 style: 'currency', 
@@ -502,62 +365,48 @@
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p class="product-price">${formatPrice(product.price)}</p>
-                    <button class="btn" onclick="addToCart(${product.id})">➕ Agregar al Carrito</button>
-                    <button class="btn btn-secondary" onclick="requestInvoice(${product.id})" style="margin-top: 0.8rem;">
-                        📄 Solicitar Factura
+                    
+                    <button class="btn" onclick="buyDirect(${product.id})">
+                        🛍️ Comprar Ahora
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="requestInvoice(${product.id})" style="margin-top: 0.5rem; font-size:0.9rem;">
+                        📄 Cotización Formal
                     </button>
                 </div>
             `).join('');
         }
 
-        // Sistema de carrito
-        let cart = [];
-
-        function addToCart(productId) {
+        // 4. FUNCIÓN COMPRA DIRECTA (Reemplaza al carrito)
+        function buyDirect(productId) {
             const product = products.find(p => p.id === productId);
             if (product) {
-                cart.push(product);
-                showNotification(`✅ ${product.name} agregado al carrito por ${formatPrice(product.price)}`);
-                console.log('Carrito:', cart);
-            }
-        }
-
-        // Función para solicitar factura
-        function requestInvoice(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                const message = `Hola InnovaBot, estoy interesado en el siguiente producto:\n\n` +
-                    `📦 Producto: ${product.name}\n` +
-                    `💰 Precio: ${formatPrice(product.price)}\n\n` +
-                    `📄 Necesito factura electrónica con los siguientes datos:\n` +
-                    `- Nombre/Razón Social: [TU NOMBRE COMPLETO]\n` +
-                    `- NIT/CC: [TU NÚMERO DE DOCUMENTO]\n` +
-                    `- Dirección: [TU DIRECCIÓN COMPLETA]\n` +
-                    `- Teléfono: [TU TELÉFONO]\n` +
-                    `- Email: [TU CORREO ELECTRÓNICO]\n\n` +
-                    `¿Cuál es el proceso para generar la factura?`;
+                const message = `Hola InnovaBot, deseo comprar el siguiente producto:\n\n` +
+                    `📦 *Producto:* ${product.name}\n` +
+                    `💰 *Precio:* ${formatPrice(product.price)}\n\n` +
+                    `Quedo atento para coordinar el pago y envío.`;
                 
-                // Abrir WhatsApp con mensaje predefinido
                 const whatsappUrl = `https://wa.me/573022399995?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
             }
         }
 
-        // Sistema de notificaciones
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
+        function requestInvoice(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hola InnovaBot, requiero una cotización/factura para:\n\n` +
+                    `📦 Producto: ${product.name}\n` +
+                    `💰 Valor: ${formatPrice(product.price)}\n\n` +
+                    `Mis datos son:\n- Nombre:\n- NIT/CC:\n- Email:`;
+                
+                const whatsappUrl = `https://wa.me/573022399995?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
         }
 
-        // Inicializar al cargar la página
         window.onload = function() {
             renderProducts();
-            console.log('✅ Página InnovaBot cargada correctamente');
+            console.log('✅ Tienda InnovaBot (Versión Azul) Cargada');
         };
     </script>
 </body>
