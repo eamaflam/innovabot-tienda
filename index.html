@@ -3,260 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaBot - Materiales de Electrónica y Robótica Educativa</title>
+    <title>InnovaBot - Tienda de Robótica</title>
     <style>
         :root {
-            /* 1. ESCALA DE AZULES Y GRISES */
-            --primary-color: #154c79;   /* Azul oscuro institucional */
-            --secondary-color: #4a6fa5; /* Azul medio */
-            --accent-color: #8e9eab;    /* Gris azulado */
-            --dark-color: #2c3e50;      /* Gris muy oscuro para textos */
-            --light-color: #f4f6f7;     /* Gris muy claro para fondos */
-            --success-color: #2e86c1;   /* Azul brillante para acciones */
+            /* TEMA AZUL Y GRIS */
+            --primary-color: #154c79;   /* Azul oscuro corporativo */
+            --secondary-color: #4a6fa5; /* Azul acero */
+            --accent-color: #2c3e50;    /* Gris oscuro */
+            --bg-color: #f0f2f5;        /* Fondo gris claro */
+            --white: #ffffff;
+            --success: #27ae60;         /* Verde solo para confirmar compra */
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: #eaeded; /* Fondo gris suave */
-        }
+        body { background-color: var(--bg-color); color: var(--accent-color); padding-bottom: 80px; }
         
+        /* HEADER */
         header {
-            /* Degradado azul a gris */
-            background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
-            padding: 2rem 0;
+            padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
+        /* HERO SECTION */
         .hero {
-            text-align: center;
-            padding: 4rem 0;
-            /* Degradado azul grisáceo */
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            background: linear-gradient(to right, #4b6cb7, #182848);
             color: white;
-            margin-bottom: 3rem;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
         }
         
         .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            /* 2. CENTRADO ASEGURADO */
-            text-align: center; 
-            display: block;
-            width: 100%;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-        }
-        
-        section {
-            padding: 3rem 0;
-        }
-        
-        h2 {
-            text-align: center;
             font-size: 2.2rem;
+            /* CENTRADO PERFECTO */
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CONTENEDOR GENERAL */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        h2.section-title {
+            text-align: center;
             color: var(--primary-color);
-            margin-bottom: 2.5rem;
+            margin: 2rem 0;
             position: relative;
         }
-        
-        h2::after {
-            content: '';
-            display: block;
-            margin: 10px auto 0;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
+        h2.section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--secondary-color); margin: 10px auto;
         }
-        
+
+        /* GRILLA DE PRODUCTOS */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 20px;
         }
         
         .product-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid #dcdcdc;
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-            border-color: var(--secondary-color);
-        }
+        .product-card:hover { transform: translateY(-5px); border: 1px solid var(--secondary-color); }
         
         .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #eee;
+            width: 100%; height: 180px; object-fit: contain;
+            margin-bottom: 15px; border-bottom: 1px solid #eee;
         }
         
-        .product-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
-            min-height: 2.2rem;
-        }
+        .product-card h3 { color: var(--primary-color); font-size: 1.1rem; margin-bottom: 10px; }
+        .product-card p { font-size: 0.9rem; color: #666; margin-bottom: 15px; flex-grow: 1; }
         
-        .product-card p {
-            color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            min-height: 4rem;
-        }
+        .price { font-size: 1.4rem; font-weight: bold; color: var(--accent-color); display: block; margin-bottom: 15px; }
         
-        .product-price {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin: 0.8rem 0;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        /* 4. BOTÓN DE COMPRA DIRECTA */
         .btn {
-            display: inline-block;
-            background: var(--primary-color);
+            background: var(--primary-color); color: white; border: none;
+            padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;
+            font-weight: bold; transition: background 0.3s;
+        }
+        .btn:hover { background: var(--secondary-color); }
+
+        /* --- CARRITO FLOTANTE --- */
+        .cart-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--success);
             color: white;
-            padding: 0.9rem 1.8rem;
-            border: none;
-            border-radius: 8px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             cursor: pointer;
-            text-decoration: none;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+        .cart-float:hover { transform: scale(1.1); }
+        
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: red;
+            color: white;
+            font-size: 14px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+
+        /* --- MODAL DEL CARRITO --- */
+        .cart-modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: flex-end;
+        }
+        
+        .cart-content {
+            background: white;
             width: 100%;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            max-width: 450px;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.3s;
         }
         
-        .btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        .cart-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 15px;
         }
+        .close-cart { background: none; border: none; font-size: 2rem; cursor: pointer; color: #666; }
+
+        .cart-items { flex-grow: 1; overflow-y: auto; }
         
-        .btn-secondary {
-            background: #7f8c8d; /* Gris */
+        .cart-item {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #eee; padding: 10px 0;
         }
-        
-        .btn-secondary:hover {
-            background: #95a5a6;
-        }
+        .cart-item-info h4 { font-size: 0.95rem; margin-bottom: 5px; }
+        .cart-item-price { color: var(--primary-color); font-weight: bold; }
+        .remove-btn { color: red; cursor: pointer; font-size: 1.2rem; background: none; border: none; padding: 5px; }
+
+        .cart-footer { border-top: 2px solid #eee; padding-top: 20px; }
+        .total-row { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; }
         
         .btn-whatsapp {
-            background: #128C7E; /* Mantener verde solo para WhatsApp por reconocimiento */
+            background: #25D366; color: white; text-decoration: none;
+            display: block; padding: 15px; text-align: center; border-radius: 8px;
+            font-weight: bold; font-size: 1.1rem;
         }
-        
-        .payment-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-color);
-        }
-        
-        .payment-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .payment-info p {
-            margin-bottom: 0.8rem;
-            font-size: 1.05rem;
-        }
-        
-        .payment-warning {
-            background: #eaf2f8; /* Azul muy pálido */
-            border-left: 4px solid var(--secondary-color);
-            padding: 1.2rem;
-            border-radius: 0 8px 8px 0;
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .contact-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        
-        .contact-info p {
-            margin-bottom: 0.8rem;
-            font-size: 1.05rem;
-        }
-        
-        .schedule {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #eee;
-        }
-        
-        .schedule h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        footer {
-            background: var(--dark-color);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 0;
-            margin-top: 3rem;
-            border-top: 4px solid var(--primary-color);
-        }
-        
-        footer p {
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero h2 {
-                font-size: 2rem;
-            }
-            .container {
-                padding: 0 15px;
-            }
-        }
+
+        /* CONTACTO */
+        .contact-section { background: white; padding: 2rem; margin-top: 3rem; border-radius: 10px; }
+        .contact-grid { display: grid; gap: 10px; }
+
+        footer { background: var(--accent-color); color: #ccc; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -264,150 +194,196 @@
     <header>
         <div class="container">
             <h1>🤖 InnovaBot</h1>
-            <p>Materiales de Electrónica y Robótica Educativa</p>
+            <p>Tecnología Educativa</p>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
             <h2>¡Inspira el Futuro con la Robótica!</h2>
-            <p>Materiales educativos para proyectos STEM y pensamiento computacional en Cundinamarca</p>
+            <p>Materiales STEM y Electrónica en Cundinamarca</p>
         </div>
     </section>
 
-    <section class="container">
-        <h2>Nuestros Productos</h2>
+    <div class="container">
+        <h2 class="section-title">Nuestros Productos</h2>
         <div class="products-grid" id="productsContainer">
             </div>
-    </section>
+    </div>
 
-    <section class="container">
-        <h2>💳 Información de Pago</h2>
-        <div class="payment-info">
-            <h3>🏦 Transferencia Bancaria</h3>
-            <p><strong>Banco:</strong> [Nombre del Banco]</p>
-            <p><strong>Tipo de Cuenta:</strong> [Ahorros/Corriente]</p>
-            <p><strong>Número de Cuenta:</strong> [Número de cuenta]</p>
-            <p><strong>Titular:</strong> SUAREZ BARON LUISA FERNANDA</p>
-            
-            <h3 style="margin-top: 1.8rem;">📱 Nequi / Daviplata</h3>
-            <p><strong>Teléfono:</strong> +57 302 239 9995</p>
-            
-            <div class="payment-warning">
-                <p>⚠️ <strong>Importante:</strong> Al realizar el pago, envía el comprobante al WhatsApp <a href="https://wa.me/573022399995" style="color: var(--primary-color); text-decoration: underline; font-weight: bold;">+57 302 239 9995</a>.</p>
+    <div class="container">
+        <div class="contact-section">
+            <h2 style="color: var(--primary-color); margin-bottom: 1rem;">📞 Contacto</h2>
+            <div class="contact-grid">
+                <p><strong>👤 innovabot-tienda:</strong></p>
+                <p>📍 Mosquera, Cundinamarca</p>
+                <p>📱 WhatsApp: +57 302 239 9995</p>
+                <p>📧 Email: suarezbaronl@gmail.com</p>
             </div>
         </div>
-    </section>
-
-    <section class="container">
-        <h2>📞 Contáctanos</h2>
-        <div class="contact-info">
-            <p><strong>👤 innovabot-tienda:</strong></p>
-            <p><strong>📱 Teléfono/WhatsApp:</strong> <a href="https://wa.me/573022399995" style="color: var(--primary-color); text-decoration: underline;">+57 302 239 9995</a></p>
-            <p><strong>📧 Email:</strong> <a href="mailto:suarezbaronl@gmail.com" style="color: var(--primary-color); text-decoration: underline;">suarezbaronl@gmail.com</a></p>
-            <p><strong>📍 Dirección:</strong> CR 3 A 17 SUR 99, Mosquera, Cundinamarca</p>
-            
-            <div class="schedule">
-                <h3>🕐 Horario de Atención</h3>
-                <p>• Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                <p>• Sábados: 9:00 AM - 2:00 PM</p>
-                <p>• Domingos: Cerrado</p>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <footer>
-        <div class="container">
-            <p><strong>🏢 InnovaBot - Suministros</strong></p>
-            <p>📄 CC: 1025521649</p>
-            <p>🏛️ Régimen: Impuesto de renta y complementario régimen ordinario</p>
-            <p>🏷️ No responsable de IVA</p>
-            <p style="margin-top: 1.5rem; font-weight: bold;">© 2026 - Todos los derechos reservados</p>
-            <p style="margin-top: 0.8rem; font-size: 0.95rem; opacity: 0.8;">
-                💻 Proveedor Tecnológico: Soluciones Alegra S.A.S
-            </p>
-        </div>
+        <p>© 2026 InnovaBot Suministros | NIT: 1025521649</p>
+        <p>Proveedor Tecnológico: Soluciones Alegra S.A.S</p>
     </footer>
 
+    <div class="cart-float" onclick="toggleCart()">
+        🛒
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛍️ Tu Canasta</h3>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            
+            <div class="cart-items" id="cartItemsContainer">
+                <p style="text-align: center; margin-top: 20px; color: #999;">Tu canasta está vacía</p>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="btn btn-whatsapp">
+                    📱 Enviar Pedido por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Base de datos de productos (Mismos productos)
+        // --- DATOS DE PRODUCTOS ---
         const products = [
-            { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", description: "Pack educativo con 10 placas V2, accesorios y baterías. Ideal aulas.", price: 1370129, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Microbit+Pack" },
-            { id: 2, name: "Carro Robótico Arduino Kit Negro", description: "Chasis TurboBot, motores, sensores ultrasónicos y Arduino UNO.", price: 166960, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Carro+Robot" },
-            { id: 3, name: "Kit Micro:bit Construcción STEM", description: "Coche robot programable con piezas de construcción.", price: 199900, image: "https://via.placeholder.com/300x200/8e9eab/FFFFFF?text=Kit+STEM" },
-            { id: 4, name: "Tarjeta Expansión Micro:bit Io Bit", description: "Expande los puertos de tu Micro:bit para más sensores.", price: 42382, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Expansion" },
-            { id: 5, name: "Sensor Humedad Suelo Capacitivo", description: "Sensor V1.2 resistente a corrosión para Arduino.", price: 10000, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Sensor" },
-            { id: 6, name: "Módulo Relé 1 Canal 5V/10A", description: "Controla cargas de potencia con Arduino de forma segura.", price: 10000, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Rele" },
-            { id: 7, name: "Set Destornilladores Precisión", description: "5 herramientas esenciales para electrónica y reparaciones.", price: 13856, image: "https://via.placeholder.com/300x200/8e9eab/FFFFFF?text=Herramientas" },
-            { id: 8, name: "Multitoma Regleta 6 Puertos", description: "Con supresor de picos y polo a tierra. 15A 125V.", price: 10240, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Regleta" },
-            { id: 9, name: "Extensión Eléctrica 5 Metros", description: "Cable encauchetado resistente para taller.", price: 10147, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Extension" },
-            { id: 10, name: "Kit Soldador Temperatura Regulable", description: "60W ajustable con soporte y accesorios completos.", price: 29266, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Soldador" },
-            { id: 11, name: "Pilas Recargables AAA x4", description: "Energizer 700mAh. Ahorra dinero y cuida el planeta.", price: 33606, image: "https://via.placeholder.com/300x200/8e9eab/FFFFFF?text=Pilas" },
-            { id: 12, name: "Cargador Inteligente 8 Ranuras", description: "Para pilas AA y AAA con pantalla LCD indicadora.", price: 68920, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Cargador" },
-            { id: 13, name: "Cables Jumper Dupont x10", description: "20cm Hembra-Hembra para conexiones rápidas.", price: 5290, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Cables" }
+            { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", price: 1370129, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Microbit+Pack" },
+            { id: 2, name: "Carro Robótico Arduino Kit", price: 166960, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Carro+Robot" },
+            { id: 3, name: "Kit Micro:bit Construcción STEM", price: 199900, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Kit+STEM" },
+            { id: 4, name: "Tarjeta Expansión Micro:bit Io Bit", price: 42382, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Expansion" },
+            { id: 5, name: "Sensor Humedad Suelo Capacitivo", price: 10000, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Sensor" },
+            { id: 6, name: "Módulo Relé 1 Canal 5V/10A", price: 10000, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Rele" },
+            { id: 7, name: "Set Destornilladores Precisión", price: 13856, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Herramientas" },
+            { id: 8, name: "Multitoma Regleta 6 Puertos", price: 10240, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Regleta" },
+            { id: 9, name: "Extensión Eléctrica 5 Metros", price: 10147, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Extension" },
+            { id: 10, name: "Kit Soldador Regulable", price: 29266, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Soldador" },
+            { id: 11, name: "Pilas Recargables AAA x4", price: 33606, image: "https://via.placeholder.com/300x200/4a6fa5/FFFFFF?text=Pilas" },
+            { id: 12, name: "Cargador Inteligente 8 Ranuras", price: 68920, image: "https://via.placeholder.com/300x200/2c3e50/FFFFFF?text=Cargador" },
+            { id: 13, name: "Cables Jumper Dupont x10", price: 5290, image: "https://via.placeholder.com/300x200/154c79/FFFFFF?text=Cables" }
         ];
 
+        // --- LÓGICA DEL CARRITO ---
+        let cart = [];
+
         function formatPrice(price) {
-            return new Intl.NumberFormat('es-CO', { 
-                style: 'currency', 
-                currency: 'COP',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(price);
+            return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(price);
         }
 
-        // Renderizar productos
         function renderProducts() {
             const container = document.getElementById('productsContainer');
-            container.innerHTML = products.map(product => `
+            container.innerHTML = products.map(p => `
                 <div class="product-card">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p class="product-price">${formatPrice(product.price)}</p>
-                    
-                    <button class="btn" onclick="buyDirect(${product.id})">
-                        🛍️ Comprar Ahora
-                    </button>
-                    
-                    <button class="btn btn-secondary" onclick="requestInvoice(${product.id})" style="margin-top: 0.5rem; font-size:0.9rem;">
-                        📄 Cotización Formal
-                    </button>
+                    <img src="${p.image}" alt="${p.name}">
+                    <div>
+                        <h3>${p.name}</h3>
+                        <span class="price">${formatPrice(p.price)}</span>
+                    </div>
+                    <button class="btn" onclick="addToCart(${p.id})">➕ Agregar al Carrito</button>
                 </div>
             `).join('');
         }
 
-        // 4. FUNCIÓN COMPRA DIRECTA (Reemplaza al carrito)
-        function buyDirect(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                const message = `Hola InnovaBot, deseo comprar el siguiente producto:\n\n` +
-                    `📦 *Producto:* ${product.name}\n` +
-                    `💰 *Precio:* ${formatPrice(product.price)}\n\n` +
-                    `Quedo atento para coordinar el pago y envío.`;
-                
-                const whatsappUrl = `https://wa.me/573022399995?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCartUI();
+            // Animación visual simple
+            const btnFloat = document.querySelector('.cart-float');
+            btnFloat.style.transform = 'scale(1.3)';
+            setTimeout(() => btnFloat.style.transform = 'scale(1)', 200);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').textContent = cart.length;
+            
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+            
+            let total = 0;
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align: center; margin-top: 20px; color: #999;">Tu canasta está vacía</p>';
+            } else {
+                container.innerHTML = cart.map((item, index) => {
+                    total += item.price;
+                    return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <span class="cart-item-price">${formatPrice(item.price)}</span>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
+                    </div>
+                    `;
+                }).join('');
+            }
+            
+            totalEl.textContent = formatPrice(total);
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Agrega productos primero");
+                return;
+            }
+
+            let message = "Hola InnovaBot, quiero realizar el siguiente pedido:\n\n";
+            let total = 0;
+
+            // Agrupar productos para que se vea ordenado (ej: 2x Sensor)
+            const summary = {};
+            cart.forEach(item => {
+                if (summary[item.name]) {
+                    summary[item.name].count++;
+                    summary[item.name].subtotal += item.price;
+                } else {
+                    summary[item.name] = { count: 1, subtotal: item.price };
+                }
+                total += item.price;
+            });
+
+            for (const [name, data] of Object.entries(summary)) {
+                message += `▪️ ${data.count}x ${name} \n`;
+            }
+
+            message += `\n💰 *TOTAL: ${formatPrice(total)}*`;
+            message += `\n\nQuedo atento a los datos de pago.`;
+
+            window.open(`https://wa.me/573022399995?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Cerrar modal si clic afuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
 
-        function requestInvoice(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                const message = `Hola InnovaBot, requiero una cotización/factura para:\n\n` +
-                    `📦 Producto: ${product.name}\n` +
-                    `💰 Valor: ${formatPrice(product.price)}\n\n` +
-                    `Mis datos son:\n- Nombre:\n- NIT/CC:\n- Email:`;
-                
-                const whatsappUrl = `https://wa.me/573022399995?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-            }
-        }
-
-        window.onload = function() {
-            renderProducts();
-            console.log('✅ Tienda InnovaBot (Versión Azul) Cargada');
-        };
+        // Iniciar
+        renderProducts();
     </script>
 </body>
 </html>
