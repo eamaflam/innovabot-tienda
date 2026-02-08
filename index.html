@@ -64,7 +64,7 @@
         .search-input {
             width: 100%;
             padding: 15px 20px;
-            padding-left: 50px; /* Espacio para el icono */
+            padding-left: 50px;
             font-size: 1.1rem;
             border: 2px solid #ddd;
             border-radius: 50px;
@@ -110,10 +110,10 @@
         .product-card img {
             width: 100%; height: 180px; object-fit: contain;
             margin-bottom: 15px; border-bottom: 1px solid #eee;
+            background-color: white;
         }
         
         .product-card h3 { color: var(--primary-color); font-size: 1.1rem; margin-bottom: 10px; }
-        .product-card p { font-size: 0.9rem; color: #666; margin-bottom: 15px; flex-grow: 1; }
         
         .price { font-size: 1.4rem; font-weight: bold; color: var(--accent-color); display: block; margin-bottom: 15px; }
         
@@ -124,7 +124,7 @@
         }
         .btn:hover { background: var(--secondary-color); }
 
-        /* --- CARRITO FLOTANTE --- */
+        /* --- CARRITO FLOTANTE (ESTO ES LO QUE SE HABÍA PERDIDO) --- */
         .cart-float {
             position: fixed;
             bottom: 30px;
@@ -294,10 +294,36 @@
         <p>Proveedor Tecnológico: Soluciones Alegra S.A.S</p>
     </footer>
 
-    <script>
-        /* PASO 1: Crea una carpeta llamada 'img' junto a este archivo.
-           PASO 2: Guarda tus fotos ahí con estos nombres exactos. */
+    <div class="cart-float" onclick="toggleCart()">
+        🛒
+        <div class="cart-count" id="cartCount">0</div>
+    </div>
 
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛍️ Tu Canasta</h3>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            
+            <div class="cart-items" id="cartItemsContainer">
+                <p style="text-align: center; margin-top: 20px; color: #999;">Tu canasta está vacía</p>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="btn btn-whatsapp">
+                    📱 Enviar Pedido por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- BASE DE DATOS DE PRODUCTOS ---
         const products = [
             { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", price: 1370129, image: "img/microbit-pack.jpg" },
             { id: 2, name: "Carro Robótico Arduino Kit", price: 166960, image: "img/carro-arduino.jpg" },
@@ -333,6 +359,7 @@
             container.innerHTML = productList.map(p => `
                 <div class="product-card">
                     <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Sin+Foto'">
+                    
                     <div>
                         <h3>${p.name}</h3>
                         <span class="price">${formatPrice(p.price)}</span>
@@ -348,7 +375,7 @@
             renderProducts(filtered);
         }
 
-        // --- CARRITO ---
+        // --- FUNCIONES DEL CARRITO ---
         function addToCart(id) {
             const existingItem = cart.find(item => item.id === id);
             if (existingItem) {
