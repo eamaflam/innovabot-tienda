@@ -1,0 +1,225 @@
+:root {
+    /* TEMA AZUL Y GRIS */
+    --primary-color: #154c79;
+    --secondary-color: #4a6fa5;
+    --accent-color: #2c3e50;
+    --bg-color: #f0f2f5;
+    --white: #ffffff;
+    --success: #27ae60;
+    --danger: #c0392b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: var(--bg-color); color: var(--accent-color); padding-bottom: 80px; }
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+/* CONTENEDOR GENERAL */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+h2.section-title {
+    text-align: center;
+    color: var(--primary-color);
+    margin: 2rem 0 1rem 0;
+}
+
+/* BARRA DE BÚSQUEDA */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    padding-left: 50px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s;
+    background: white;
+}
+
+.search-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 15px rgba(74, 111, 165, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* GRILLA DE PRODUCTOS */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover { transform: translateY(-5px); border: 1px solid var(--secondary-color); }
+
+.product-card img {
+    width: 100%; height: 180px; object-fit: contain;
+    margin-bottom: 15px; border-bottom: 1px solid #eee;
+    background-color: white;
+}
+
+.product-card h3 { color: var(--primary-color); font-size: 1.1rem; margin-bottom: 10px; }
+
+.price { font-size: 1.4rem; font-weight: bold; color: var(--accent-color); display: block; margin-bottom: 15px; }
+
+.btn {
+    background: var(--primary-color); color: white; border: none;
+    padding: 10px; width: 100%; border-radius: 5px; cursor: pointer;
+    font-weight: bold; transition: background 0.3s;
+}
+.btn:hover { background: var(--secondary-color); }
+
+/* CARRITO FLOTANTE */
+.cart-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--success);
+    color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s;
+}
+.cart-float:hover { transform: scale(1.1); }
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+/* MODAL DEL CARRITO */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    justify-content: flex-end;
+}
+
+.cart-content {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+.cart-header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 15px;
+}
+.close-cart { background: none; border: none; font-size: 2rem; cursor: pointer; color: #666; }
+
+.cart-items { flex-grow: 1; overflow-y: auto; }
+
+/* Items del carrito */
+.cart-item {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #eee; padding: 15px 0;
+}
+
+.cart-item-info { flex: 1; padding-right: 10px; }
+.cart-item-info h4 { font-size: 0.95rem; margin-bottom: 5px; color: var(--primary-color); }
+.cart-item-total { font-weight: bold; color: var(--accent-color); font-size: 0.9rem; }
+
+.qty-controls {
+    display: flex; align-items: center; background: #f0f2f5; border-radius: 20px; padding: 2px;
+}
+
+.qty-btn {
+    width: 30px; height: 30px; border-radius: 50%; border: none; background: white;
+    cursor: pointer; font-weight: bold; font-size: 1.2rem; color: var(--primary-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;
+}
+
+.qty-btn:active { transform: scale(0.95); }
+.qty-value { margin: 0 10px; font-weight: bold; min-width: 20px; text-align: center; }
+
+.cart-footer { border-top: 2px solid #eee; padding-top: 20px; }
+.total-row { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; }
+
+.btn-whatsapp {
+    background: #25D366; color: white; text-decoration: none;
+    display: block; padding: 15px; text-align: center; border-radius: 8px;
+    font-weight: bold; font-size: 1.1rem;
+}
+
+/* CONTACTO */
+.contact-section { background: white; padding: 2rem; margin-top: 3rem; border-radius: 10px; }
+.contact-grid { display: grid; gap: 10px; }
+
+footer { background: var(--accent-color); color: #ccc; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9rem; }
