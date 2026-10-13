@@ -1,5 +1,12 @@
 // --- BASE DE DATOS DE PRODUCTOS ---
 const products = [
+    { 
+        id: 15, 
+        name: "Ultimate Starter Kit para BBC micro:bit (V2 incluido)", 
+        price: 300000, 
+        image: "img/caja.jpg",
+        description: "Incluye micro:bit V2, tarjeta de expansión, sensor de humedad, temperatura, movimiento, ultrasónico, infrarrojo, servomotor, protoboard, cables jumper y de caimán, y 20 sensores más."
+    },
     { id: 1, name: "BBC Micro:bit V2 Club Pack (10 und)", price: 1370129, image: "img/microbit-pack.jpg" },
     { id: 2, name: "Carro Robótico Arduino Kit", price: 166960, image: "img/carro-arduino.jpg" },
     { id: 3, name: "Kit Micro:bit Construcción STEM", price: 199900, image: "img/kit-stem.jpg" },
@@ -38,6 +45,7 @@ function renderProducts(productList = products) {
             
             <div>
                 <h3>${p.name}</h3>
+                ${p.description ? `<p class="product-description">${p.description}</p>` : ''}
                 <span class="price">${formatPrice(p.price)}</span>
             </div>
             <button class="btn" onclick="addToCart(${p.id})">➕ Agregar al Carrito</button>
@@ -47,7 +55,10 @@ function renderProducts(productList = products) {
 
 function filterProducts() {
     const term = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = products.filter(p => p.name.toLowerCase().includes(term));
+    const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(term) || 
+        (p.description && p.description.toLowerCase().includes(term))
+    );
     renderProducts(filtered);
 }
 
