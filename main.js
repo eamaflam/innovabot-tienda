@@ -169,7 +169,7 @@ function renderProducts(productList = products) {
 
     container.innerHTML = productList.map(p => `
         <div class="product-card">
-            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Sin+Foto'">
+            <img src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src='img/placeholder.svg'">
             
             <div>
                 <h3>${p.name}</h3>
@@ -177,7 +177,7 @@ function renderProducts(productList = products) {
                 <span class="price">${formatPrice(p.price)}</span>
                 <small class="iva-label" style="display:block; color:#888; font-size:0.8rem;">IVA incluido</small>
             </div>
-            <button class="btn" onclick="addToCart(${p.id})">➕ Agregar al Carrito</button>
+            <button class="btn" onclick="addToCart(${p.id})">▶ agregar al carrito</button>
         </div>
     `).join('');
 }

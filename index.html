@@ -3,59 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaBot - Tienda de Robótica</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <title>InnovaBot - Robótica Educativa</title>
+    <meta name="description" content="InnovaBot: kits de robótica educativa, micro:bit, sensores y materiales STEAM en Cundinamarca.">
 
-<header>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="landing.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body class="landing">
+
+    <!-- Escena 3D (fondo fijo) -->
+    <canvas id="webgl" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header>
         <div class="container">
-            <h1>🤖 InnovaBot</h1>
+            <h1><a href="index.html" class="brand">🤖 Innova<span>Bot</span></a></h1>
             <p>Tecnología Educativa</p>
-            
+
             <nav class="main-nav">
                 <a href="index.html" class="nav-link active">🛍️ Tienda</a>
+                <a href="#productos" class="nav-link">⚡ Productos</a>
                 <a href="tutoriales.html" class="nav-link">🎓 Tutoriales</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
+    <!-- ===== EXPERIENCIA SCROLL: el robot se arma ===== -->
+    <main id="experience">
+
+        <section class="hero-landing" id="inicio">
+            <div class="hero-inner">
+                <span class="code-chip code-chip--hat">al iniciar</span>
+                <h2 class="hero-title">
+                    <span class="line">CONSTRUYE</span>
+                    <span class="line line--electric">EL FUTURO</span>
+                </h2>
+                <p class="hero-sub">Robótica educativa, sensores y materiales STEAM para colegios y semilleros en Cundinamarca.</p>
+                <div class="hero-ctas">
+                    <a href="#productos" class="btn-block btn-block--primary"><span>▶</span> ver productos</a>
+                    <a href="tutoriales.html" class="btn-block btn-block--ghost"><span>🎓</span> tutoriales</a>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <span>Desliza para ensamblar</span>
+                <i></i>
+            </div>
+        </section>
+
+        <section class="step step--left" data-step="1">
+            <div class="step-card">
+                <span class="step-tag">paso 01</span>
+                <h3>Estructura</h3>
+                <p>Chasis y piezas modulares que los estudiantes ensamblan con sus propias manos.</p>
+                <div class="step-code"><span class="blk blk--motion">mover <em>10</em> pasos</span></div>
+            </div>
+        </section>
+
+        <section class="step step--right" data-step="2">
+            <div class="step-card">
+                <span class="step-tag">paso 02</span>
+                <h3>Circuitos</h3>
+                <p>micro:bit, ESP32, sensores y motores conectados en minutos, sin soldar.</p>
+                <div class="step-code"><span class="blk blk--sensor">si distancia &lt; <em>10</em> cm</span></div>
+            </div>
+        </section>
+
+        <section class="step step--left" data-step="3">
+            <div class="step-card">
+                <span class="step-tag">paso 03</span>
+                <h3>Código</h3>
+                <p>Programación por bloques con MakeCode: del bloque en pantalla al movimiento real.</p>
+                <div class="step-code"><span class="blk blk--loop">por siempre</span></div>
+            </div>
+        </section>
+
+        <section class="step step--center" data-step="4">
+            <div class="step-card step-card--final">
+                <span class="step-tag">paso 04</span>
+                <h3>¡Energía!</h3>
+                <p>Tu robot cobra vida. Inspira a la próxima generación de innovadores.</p>
+                <a href="#productos" class="btn-block btn-block--primary"><span>⚡</span> armar mi kit</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== TIENDA ===== -->
+    <section id="productos" class="shop-section">
         <div class="container">
-            <h2>¡Inspira el Futuro con la Robótica!</h2>
-            <p>Materiales STEM y Electrónica en Cundinamarca</p>
+            <span class="code-chip">tienda</span>
+            <h2 class="section-title">Nuestros Productos</h2>
+            <p class="section-sub">Precios con IVA incluido · Envíos desde Mosquera, Cundinamarca</p>
+
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="buscar ( Arduino, Sensor, Micro:bit... )" onkeyup="filterProducts()">
+            </div>
+
+            <div class="products-grid" id="productsContainer"></div>
         </div>
+
+        <div class="container">
+            <div class="contact-section">
+                <h2>📞 Contacto</h2>
+                <div class="contact-grid">
+                    <p><strong>👤 innovabot-tienda</strong></p>
+                    <p>📍 Mosquera, Cundinamarca</p>
+                    <p>📱 WhatsApp: <a href="https://wa.me/573022399995" target="_blank" rel="noopener">+57 302 239 9995</a></p>
+                    <p>📧 Email: <a href="mailto:suarezbaronl@gmail.com">suarezbaronl@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 InnovaBot Suministros | NIT: 1025521649</p>
+            <p>Proveedor Tecnológico: Soluciones Alegra S.A.S</p>
+        </footer>
     </section>
 
-    <div class="container">
-        <h2 class="section-title">Nuestros Productos</h2>
-
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Buscar producto (ej: Arduino, Sensor, Micro:bit)..." onkeyup="filterProducts()">
-        </div>
-
-        <div class="products-grid" id="productsContainer">
-            </div>
-    </div>
-
-    <div class="container">
-        <div class="contact-section">
-            <h2 style="color: var(--primary-color); margin-bottom: 1rem;">📞 Contacto</h2>
-            <div class="contact-grid">
-                <p><strong>👤 innovabot-tienda:</strong></p>
-                <p>📍 Mosquera, Cundinamarca</p>
-                <p>📱 WhatsApp: +57 302 239 9995</p>
-                <p>📧 Email: suarezbaronl@gmail.com</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 InnovaBot Suministros | NIT: 1025521649</p>
-        <p>Proveedor Tecnológico: Soluciones Alegra S.A.S</p>
-    </footer>
-
+    <!-- Carrito -->
     <div class="cart-float" onclick="toggleCart()">
         🛒
         <div class="cart-count" id="cartCount">0</div>
@@ -67,11 +145,11 @@
                 <h3>🛍️ Tu Canasta</h3>
                 <button class="close-cart" onclick="toggleCart()">×</button>
             </div>
-            
+
             <div class="cart-items" id="cartItemsContainer">
                 <p style="text-align: center; margin-top: 20px; color: #999;">Tu canasta está vacía</p>
             </div>
-            
+
             <div class="cart-footer">
                 <div class="total-row">
                     <span>Total:</span>
@@ -85,5 +163,8 @@
     </div>
 
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script type="module" src="landing.js"></script>
 </body>
 </html>
